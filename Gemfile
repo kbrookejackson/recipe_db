@@ -7,7 +7,6 @@ end
 
 
 gem 'rails', '~> 5.1.3'
-gem 'sqlite3'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -22,11 +21,16 @@ gem 'nested_form_fields'
 gem 'carrierwave', '~> 1.0'
 
 
-
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
 group :development, :test do
+  gem 'sqlite3'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+
 end
 
 group :development do

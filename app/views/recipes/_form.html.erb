@@ -1,3 +1,4 @@
+
 <%= form_with(model: recipe, local: true) do |form| %>
   <% if recipe.errors.any? %>
     <div id="error_explanation">
@@ -11,49 +12,71 @@
     </div>
   <% end %>
 
+<div class="gray">
+<div class="row">
+ 
+  <div class="col-md-6" style="padding-right: 30px">
+  <div class="form-group">
+    <h2>Step 1: Name it</h2>
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :recipe_title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :recipe_description, class: "form-control" %>
+  </div>
+  </div><!--col ends here-->
+
+<div class="col-md-6">
    <div class="form-group">
+    <h2>Step 2: Add tasty ingredients</h2>
+ <%= form.nested_fields_for :ingredients do | ingredient|%>
+  <%= ingredient.text_field :content%>
+  <%= ingredient.remove_nested_fields_link %>
+<% end %>
+  
+  <i class="fa fa-plus"></i>
+  <%= form.add_nested_fields_link :ingredients, "Add Ingredient",:class=>"edit_add "%>
+</div>
+</div>
+
+
+  
+</div><!--row ends here-->
+
+<div class="row">
+
+<div class="col-md-6">
+  <div class="form-group">
+
+      <h2>Step 3: Add instructions</h2>
+ <%= form.nested_fields_for :steps do | step|%>
+  <%= step.text_field :direction%>
+  <%= step.remove_nested_fields_link %>
+<% end %>
+  <i class="fa fa-plus"></i>
+  <%= form.add_nested_fields_link :steps, "Add Step",:class=>"edit_add " %>
+</div>
+</div>
+
+<div class="col-md-6">
+   <div class="form-group">
+    <h2>Step 4: UPLOAD AN IMAGE</h2>
     <%= form.file_field :image %>
     <% if @recipe.image? %>
       <%= image_tag @recipe.image.url, class: "recipe-show" %>
       <%= form.check_box :remove_image %>
         Remove Image
     <% end %>
- </div>
-
-
-
-  <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :recipe_title, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :recipe_description, class: "form-control" %>
-  </div>
-
-  <div class="form-group">
-    <h3> Add Ingredients </h3>
- <%= form.nested_fields_for :ingredients do | ingredient|%>
-  <%= ingredient.text_field :content%>
-  <%= ingredient.remove_nested_fields_link %>
-<% end %>
-  
-  <%= form.add_nested_fields_link :ingredients %>
+    </div>
+  </div><!--col ends here-->
+</div><!--row ends here-->
 </div>
-
-  <div class="form-group">
-      <h3> Add Steps </h3>
-
- <%= form.nested_fields_for :steps do | step|%>
-  <%= step.text_field :direction%>
-  <%= step.remove_nested_fields_link %>
-<% end %>
-  
-  <%= form.add_nested_fields_link :steps %>
-</div>
+<br></br>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Add Recipe", :class=>"btn-info"%>
   </div>
+
 <% end %>
+

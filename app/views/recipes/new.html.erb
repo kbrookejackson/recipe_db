@@ -1,5 +1,13 @@
-<h1>New Recipe</h1>
+<div class="container container-form">
 
+<h1>Create a New Recipe</h1>
+<br></br>
 <%= render 'form', recipe: @recipe %>
 
-<%= link_to 'Back', recipes_path %>
+<br></br>
+<button type="button" class="btn btn-danger">
+<%= link_to 'Cancel', recipes_path %>
+</button>
+
+<br></br>
+</div>
