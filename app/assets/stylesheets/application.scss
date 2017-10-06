@@ -166,6 +166,25 @@ img.recipe-index {
 
 }
 
+.btn-submit {
+	box-shadow: none;
+	font-family: 'Source Sans Pro', sans-serif;
+	text-transform: uppercase;
+	font-size: 24px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	box-sizing: border-box;
+	border-style: none;
+	width: 100%;
+	border-radius: 5px;
+
+}
+
+.btn-submit:hover {
+	background-color: #2ECC71;
+}
 .icon {
 	color: #fff;
 }
